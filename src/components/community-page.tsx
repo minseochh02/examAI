@@ -181,8 +181,8 @@ export function CommunityPage() {
 									</div>
 								</div>
 								<p className="text-sm">
-									Just got my hands on the new Acme product and I'm loving it!
-									Can&apos;t wait to see what else the team has in store.
+									Just got my hands on the new Acme product and I&apos;m loving
+									it! Can&apos;t wait to see what else the team has in store.
 								</p>
 							</div>
 						</div>
