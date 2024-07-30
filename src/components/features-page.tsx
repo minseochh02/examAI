@@ -19,6 +19,7 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 
 import Link from "next/link";
+import { JSX, SVGProps } from "react";
 
 export function FeaturesPage() {
 	return (
@@ -150,7 +151,9 @@ export function FeaturesPage() {
 	);
 }
 
-function AccessibilityIcon(props) {
+function AccessibilityIcon(
+	props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
 	return (
 		<svg
 			{...props}
@@ -173,7 +176,7 @@ function AccessibilityIcon(props) {
 	);
 }
 
-function GaugeIcon(props) {
+function GaugeIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -193,7 +196,7 @@ function GaugeIcon(props) {
 	);
 }
 
-function LayersIcon(props) {
+function LayersIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -214,7 +217,7 @@ function LayersIcon(props) {
 	);
 }
 
-function RocketIcon(props) {
+function RocketIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -236,7 +239,7 @@ function RocketIcon(props) {
 	);
 }
 
-function ShieldIcon(props) {
+function ShieldIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -255,7 +258,7 @@ function ShieldIcon(props) {
 	);
 }
 
-function XIcon(props) {
+function XIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -275,7 +278,9 @@ function XIcon(props) {
 	);
 }
 
-function MountainIcon(props) {
+function MountainIcon(
+	props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
 	return (
 		<svg
 			{...props}

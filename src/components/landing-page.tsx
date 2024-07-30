@@ -4,6 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import Link from "next/link";
+import { JSX, SVGProps } from "react";
 
 export function LandingPage() {
 	return (
@@ -243,7 +244,9 @@ export function LandingPage() {
 	);
 }
 
-function MountainIcon(props) {
+function MountainIcon(
+	props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
 	return (
 		<svg
 			{...props}
@@ -262,7 +265,7 @@ function MountainIcon(props) {
 	);
 }
 
-function XIcon(props) {
+function XIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}

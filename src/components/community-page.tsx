@@ -29,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { JSX, SVGProps } from "react";
 
 export function CommunityPage() {
 	return (
@@ -242,7 +243,9 @@ export function CommunityPage() {
 		</div>
 	);
 }
-function MountainIcon(props) {
+function MountainIcon(
+	props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
 	return (
 		<svg
 			{...props}
