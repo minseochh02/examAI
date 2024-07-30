@@ -110,9 +110,9 @@ export function CommunityPage() {
 									</div>
 								</div>
 								<p className="text-sm">
-									Excited to be part of the Acme community! Can't wait to
+									"Excited to be part of the Acme community! Can't wait to
 									connect with fellow enthusiasts and learn more about the
-									products.
+									products."
 								</p>
 							</div>
 						</div>
@@ -131,8 +131,8 @@ export function CommunityPage() {
 										</div>
 									</div>
 									<p className="text-sm">
-										Great to see you here, Olivia! I'm also a big fan of Acme
-										products. Looking forward to connecting.
+										"Great to see you here, Olivia! I'm also a big fan of Acme
+										products. Looking forward to connecting."
 									</p>
 								</div>
 							</div>
@@ -149,8 +149,8 @@ export function CommunityPage() {
 										</div>
 									</div>
 									<p className="text-sm">
-										Awesome, can't wait to see what you guys come up with next!
-										The Acme community is the best.
+										"Awesome, can't wait to see what you guys come up with next!
+										The Acme community is the best."
 									</p>
 								</div>
 							</div>
@@ -181,8 +181,8 @@ export function CommunityPage() {
 									</div>
 								</div>
 								<p className="text-sm">
-									Just got my hands on the new Acme product and I'm loving it!
-									Can't wait to see what else the team has in store.
+									"Just got my hands on the new Acme product and I'm loving it!
+									Can't wait to see what else the team has in store."
 								</p>
 							</div>
 						</div>
@@ -201,8 +201,8 @@ export function CommunityPage() {
 										</div>
 									</div>
 									<p className="text-sm">
-										I agree, John! The new Acme product is a game-changer. Can't
-										wait to see what else is in the pipeline.
+										"I agree, John! The new Acme product is a game-changer.
+										Can't wait to see what else is in the pipeline."
 									</p>
 								</div>
 							</div>
@@ -219,8 +219,8 @@ export function CommunityPage() {
 										</div>
 									</div>
 									<p className="text-sm">
-										Totally agree, the new Acme product is amazing! Can't wait
-										to see what else is in store.
+										"Totally agree, the new Acme product is amazing! Can't wait
+										to see what else is in store."
 									</p>
 								</div>
 							</div>
