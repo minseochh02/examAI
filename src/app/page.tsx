@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { LandingPage } from "@/components/landing-page"; // Adjust the path if necessary
 
 export default function Home() {

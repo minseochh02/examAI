@@ -30,20 +30,41 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
+import React from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function CommunityPage() {
+	const { data: session, status } = useSession();
+	const router = useRouter();
+
+	if (status === "loading") {
+		return <div>Loading...</div>;
+	}
+
+	if (status === "unauthenticated") {
+		router.push("/");
+		return null;
+	}
 	return (
 		<div className="flex flex-col h-full">
 			<header className="px-4 lg:px-6 h-14 flex items-center">
 				<Link
-					href="#"
+					href="/"
 					className="flex items-center justify-center"
 					prefetch={false}
 				>
-					<MountainIcon className="h-6 w-6" />
+					<CompanyIcon />
 					<span className="sr-only">Acme Inc</span>
 				</Link>
 				<nav className="ml-auto flex gap-4 sm:gap-6">
+					<Link
+						href="/"
+						className="text-sm font-medium hover:underline underline-offset-4"
+						prefetch={false}
+					>
+						Home
+					</Link>
 					<Link
 						href="/features"
 						className="text-sm font-medium hover:underline underline-offset-4"
@@ -57,20 +78,20 @@ export function CommunityPage() {
 						prefetch={false}
 					>
 						Pricing
+					</Link>*/}
+					<Link
+						href="/tutorial"
+						className="text-sm font-medium hover:underline underline-offset-4"
+						prefetch={false}
+					>
+						Tutorial
 					</Link>
 					<Link
 						href="#"
-						className="text-sm font-medium hover:underline underline-offset-4"
+						className="text-sm font-medium underline underline-offset-4"
 						prefetch={false}
 					>
-						About
-					</Link> */}
-					<Link
-						href="/"
-						className="text-sm font-medium hover:underline underline-offset-4"
-						prefetch={false}
-					>
-						Home
+						Community
 					</Link>
 				</nav>
 			</header>
@@ -243,23 +264,6 @@ export function CommunityPage() {
 		</div>
 	);
 }
-function MountainIcon(
-	props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
-	return (
-		<svg
-			{...props}
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-		</svg>
-	);
+function CompanyIcon() {
+	return <img src="/icon.png" alt="icon" className="h-14 w-24" />;
 }
