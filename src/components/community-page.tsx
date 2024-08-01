@@ -31,7 +31,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import React from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export function CommunityPage() {
@@ -46,6 +46,12 @@ export function CommunityPage() {
 		router.push("/");
 		return null;
 	}
+	const handleSignOut = async () => {
+		signOut();
+	};
+	const handleSignIn = async () => {
+		signIn();
+	};
 	return (
 		<div className="flex flex-col h-full">
 			<header className="px-4 lg:px-6 h-14 flex items-center">
@@ -72,13 +78,6 @@ export function CommunityPage() {
 					>
 						Features
 					</Link>
-					{/* <Link
-						href="#"
-						className="text-sm font-medium hover:underline underline-offset-4"
-						prefetch={false}
-					>
-						Pricing
-					</Link>*/}
 					<Link
 						href="/tutorial"
 						className="text-sm font-medium hover:underline underline-offset-4"
@@ -93,6 +92,8 @@ export function CommunityPage() {
 					>
 						Community
 					</Link>
+
+					<Button onClick={handleSignOut}>Log Out</Button>
 				</nav>
 			</header>
 			<header className="bg-primary text-primary-foreground p-6">
@@ -265,5 +266,5 @@ export function CommunityPage() {
 	);
 }
 function CompanyIcon() {
-	return <img src="/icon.png" alt="icon" className="h-14 w-24" />;
+	return <img src="/logo.png" alt="icon" className="h-14 w-24" />;
 }

@@ -7,8 +7,12 @@
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import React, { useEffect, useState } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { ResponsiveTemplateCarousel } from "./responsive-template-carousel";
+
+const SLIDE_ID = "18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8";
 
 export function LandingPage() {
 	const { data: session, status } = useSession();
@@ -51,16 +55,27 @@ export function LandingPage() {
 		}
 	};
 
+	const handleSignOut = async () => {
+		signOut();
+	};
+	const handleSignIn = async () => {
+		signIn();
+	};
+
 	const handleButtonClick = async () => {
 		setIsLoading(true);
 		try {
 			if (status === "authenticated") {
-				router.push("/tutorial");
+				// router.push("/tutorial");
 			} else {
 				await signIn("google");
 			}
 		} finally {
 			setIsLoading(false);
+			window.open(
+				`https://docs.google.com/presentation/d/${SLIDE_ID}/copy`,
+				"_blank"
+			);
 		}
 	};
 
@@ -90,22 +105,15 @@ export function LandingPage() {
 					>
 						Features
 					</Link>
-					{/* <Link
-						href="#"
+					<Link
+						href="/tutorial"
 						className="text-sm font-medium hover:underline underline-offset-4"
 						prefetch={false}
 					>
-						Pricing
-					</Link> */}
+						Tutorial
+					</Link>
 					{status === "authenticated" ? (
 						<>
-							<Link
-								href="/tutorial"
-								className="text-sm font-medium hover:underline underline-offset-4"
-								prefetch={false}
-							>
-								Tutorial
-							</Link>
 							<Link
 								href="/community"
 								className="text-sm font-medium hover:underline underline-offset-4"
@@ -113,15 +121,10 @@ export function LandingPage() {
 							>
 								Community
 							</Link>
+							<Button onClick={handleSignOut}>Log Out</Button>
 						</>
 					) : (
-						<Link
-							href="/"
-							className="text-sm font-medium hover:underline underline-offset-4"
-							prefetch={false}
-						>
-							Log In
-						</Link>
+						<Button onClick={handleSignIn}>Log In</Button>
 					)}
 				</nav>
 			</header>
@@ -139,55 +142,57 @@ export function LandingPage() {
 							<div className="flex flex-col justify-center space-y-4">
 								<div className="space-y-2">
 									<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-										The complete platform for building the Web
+										클릭 한 번으로 완성되는 서명의 여정
 									</h1>
 									<p className="max-w-[600px] text-muted-foreground md:text-xl">
-										Give your team the toolkit to stop configuring and start
-										innovating. Securely build, deploy, and scale the best web
-										experiences.
+										서명의 완벽한 삼박자: 손쉽게 문서를 만들고, 빠르게 서명을
+										받고, 안전하게 기록을 보관하세요. 로그인 없이 누구나 참여할
+										수 있는 혁신적인 서명 솔루션을 경험해보세요.
 									</p>
 								</div>
-								<div className="flex flex-col gap-2 min-[400px]:flex-row">
-									<button
-										onClick={handleButtonClick}
-										disabled={isLoading}
-										className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-									>
-										{isLoading ? (
-											<Spinner />
-										) : status === "authenticated" ? (
-											"Go to Tutorial"
-										) : (
-											"Sign In"
-										)}
-									</button>
-									<Link
-										href="/features"
-										className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-										prefetch={false}
-									>
-										Learn More
-									</Link>
-								</div>
+								<button
+									onClick={handleButtonClick}
+									disabled={isLoading}
+									className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+								>
+									{isLoading ? (
+										<Spinner />
+									) : status === "authenticated" ? (
+										"서명기 사용하기"
+									) : (
+										"가입하기"
+									)}
+								</button>
 							</div>
 						</div>
 					</div>
 				</section>
+				<section className="w-full py-12 md:pt-24 lg:pt-32 xl:pt-48">
+					<div className="container px-4 md:px-6">
+						<div className="flex flex-col items-center justify-center space-y-4 text-center">
+							<div className="space-y-2">
+								<ResponsiveTemplateCarousel />
+							</div>
+						</div>
+					</div>
+				</section>
+
 				<section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
 					<div className="container px-4 md:px-6">
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<div className="space-y-2">
 								<div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
-									New Features
+									새로운 기능
 								</div>
 								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-									Faster iteration. More innovation.
+									믿을 수 없이 쉬운 서명. 끝없는 혁신.
 								</h2>
 								<p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-									The platform for rapid progress. Let your team focus on
-									shipping features instead of managing infrastructure with
-									automated CI/CD, built-in testing, and integrated
-									collaboration.
+									서명의 복잡함을 완전히 없앤 플랫폼입니다. 로그인 절차도,
+									복잡한 단계도 없습니다. 직관적인 문서 생성부터 원클릭 서명,
+									자동 저장까지 - 모든 과정이 놀랍도록 간단합니다. 이제 소규모
+									기업 CEO나 재무 관리자와 같은 바쁜 전문가들이 번거로운 절차
+									대신 핵심 업무에 집중할 수 있습니다.
 								</p>
 							</div>
 						</div>
@@ -203,27 +208,31 @@ export function LandingPage() {
 								<ul className="grid gap-6">
 									<li>
 										<div className="grid gap-1">
-											<h3 className="text-xl font-bold">Collaboration</h3>
+											<h3 className="text-xl font-bold">원클릭 서명</h3>
 											<p className="text-muted-foreground">
-												Make collaboration seamless with built-in code review
-												tools.
+												로그인 없이 한 번의 클릭으로 어디서나 즉시 서명할 수
+												있습니다.
 											</p>
 										</div>
 									</li>
 									<li>
 										<div className="grid gap-1">
-											<h3 className="text-xl font-bold">Automation</h3>
+											<h3 className="text-xl font-bold">
+												무제한 사용 무제한 무료
+											</h3>
 											<p className="text-muted-foreground">
-												Automate your workflow with continuous integration.
+												횟수 제한 없이 무료로 사용하세요. 비용 걱정 없이 필요한
+												만큼 서명하고, 문서를 주고받을 수 있습니다. 실수해도
+												괜찮아요 - 언제든 다시 시도할 수 있으니까요.
 											</p>
 										</div>
 									</li>
 									<li>
 										<div className="grid gap-1">
-											<h3 className="text-xl font-bold">Scale</h3>
+											<h3 className="text-xl font-bold">직관적인 인터페이스</h3>
 											<p className="text-muted-foreground">
-												Deploy to the cloud with a single click and scale with
-												ease.
+												보이는 그대로 간편하게 전송하고 받아보세요. 복잡한
+												설명이 필요 없는 사용자 중심 디자인.
 											</p>
 										</div>
 									</li>
@@ -236,11 +245,11 @@ export function LandingPage() {
 					<div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
 						<div className="space-y-2">
 							<h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-								Experience the workflow the best frontend teams love.
+								한 번의 클릭으로 비즈니스의 속도를 높이세요.
 							</h2>
 							<p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-								Let your team focus on shipping features instead of managing
-								infrastructure with automated CI/CD.
+								복잡한 서류 작업 대신 핵심 비즈니스에 집중하세요. 원클릭 서명과
+								자동화된 문서 관리로 업무 효율을 극대화합니다.
 							</p>
 						</div>
 						<div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
@@ -249,19 +258,19 @@ export function LandingPage() {
 								className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 								prefetch={false}
 							>
-								Get Help
+								도음 받기
 							</Link>
 							<Link
-								href="#"
+								href="/tutorial"
 								className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 								prefetch={false}
 							>
-								Learn more
+								사용 방법
 							</Link>
 						</div>
 					</div>
 				</section>
-				<section className="w-full py-12 md:py-24 lg:py-32 border-t">
+				{/* <section className="w-full py-12 md:py-24 lg:py-32 border-t">
 					<div className="container px-4 md:px-6">
 						<div className="grid gap-10 sm:px-10 md:gap-16 md:grid-cols-2">
 							<div className="space-y-4">
@@ -299,12 +308,10 @@ export function LandingPage() {
 							</div>
 						</div>
 					</div>
-				</section>
+				</section> */}
 			</main>
 			<footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-				<p className="text-xs text-muted-foreground">
-					&copy; 2024 Acme Inc. All rights reserved.
-				</p>
+				<p className="text-xs text-muted-foreground">&copy; 2024 QUUS LLC.</p>
 				<nav className="sm:ml-auto flex gap-4 sm:gap-6">
 					<Link
 						href="#"
@@ -327,7 +334,7 @@ export function LandingPage() {
 }
 
 function CompanynIcon() {
-	return <img src="/icon.png" alt="icon" className="h-14 w-24" />;
+	return <img src="/logo.png" alt="icon" className="h-14 w-24" />;
 }
 
 function XIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
