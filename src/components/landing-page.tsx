@@ -160,7 +160,7 @@ export function LandingPage() {
 									) : status === "authenticated" ? (
 										"서명기 사용하기"
 									) : (
-										"가입하기"
+										"무료로 시작하기"
 									)}
 								</button>
 							</div>
