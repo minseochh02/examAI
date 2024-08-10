@@ -26,143 +26,32 @@ import {
 } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 export function ResponsiveTemplateCarousel() {
-	const { data: session, status } = useSession();
+	// const { data: session, status } = useSession();
 	return (
 		<Carousel className="w-full max-w-4xl">
 			<CarouselContent>
 				<CarouselItem>
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-						<Card className="flex flex-col items-center gap-4 p-6">
+					<div className="grid grid-cols-1 gap-4 grid-cols-2">
+						<Card className="flex flex-col justify-center items-center gap-4 p-6">
 							<img
-								src="https://docs.google.com/presentation/d/18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8/export?format=png&pageid=p"
-								width={300}
+								src="https://docs.google.com/presentation/d/1RQBSmZrNamMKE-9K3sTU_dFWLdJ-S34RKnKl6S_9ew4/export?format=png&pageid=p"
+								width={500}
 								height={200}
 								alt="Template Thumbnail"
 								className="rounded-md"
 							/>
 							<div className="text-center">
-								<h3 className="text-lg font-semibold">근로계약서</h3>
+								<h3 className="text-lg font-semibold">Horizontal</h3>
 							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8/copy`,
-											"_blank"
-										)
-									}
-								>
-									사용하기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/1u5qlCfmL5Wm2QBqNFXKjOLcLbmBDxHPKG4QZFTNcJMw/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">개인정보활용동의서</h3>
-							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/1u5qlCfmL5Wm2QBqNFXKjOLcLbmBDxHPKG4QZFTNcJMw/copy`,
-											"_blank"
-										)
-									}
-								>
-									사용하기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/1usEbaOEjCaPT95ifFI1ZTIp0kvGpIc385HEU4BypzZE/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">상계계약서</h3>
-							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/1usEbaOEjCaPT95ifFI1ZTIp0kvGpIc385HEU4BypzZE/copy`,
-											"_blank"
-										)
-									}
-								>
-									사용하기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-					</div>
-				</CarouselItem>
-				<CarouselItem>
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/1nSgGZfL3DZrp4Xbzj6AvnqXep5E2IOG1gRDmqWMy9nw/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">채권채무상계계약서</h3>
-							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/1nSgGZfL3DZrp4Xbzj6AvnqXep5E2IOG1gRDmqWMy9nw/copy`,
-											"_blank"
-										)
-									}
-								>
-									사용하기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/1ZEf8Ku1Bktj9oKugo-FeXhbw88-Sv166YsnvK2UiQ00/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">업무제휴 양해각서</h3>
-							</div>
+
 							<Button
 								size="sm"
 								onClick={() =>
 									window.open(
-										`https://docs.google.com/presentation/d/1ZEf8Ku1Bktj9oKugo-FeXhbw88-Sv166YsnvK2UiQ00/copy`,
+										`https://docs.google.com/presentation/d/1RQBSmZrNamMKE-9K3sTU_dFWLdJ-S34RKnKl6S_9ew4/copy`,
 										"_blank"
 									)
 								}
@@ -170,22 +59,22 @@ export function ResponsiveTemplateCarousel() {
 								사용하기
 							</Button>
 						</Card>
-						<Card className="flex flex-col items-center gap-4 p-6">
+						<Card className="flex flex-col justify-center items-center gap-4 p-6">
 							<img
-								src="https://docs.google.com/presentation/d/166_bhAchy6Ms29oLPtAjtzla1iOxWLwd1iX8fnJ5Ato/export?format=png&pageid=p"
+								src="https://docs.google.com/presentation/d/1s-J961sUXSewWbj3HUPcCRK7sBjVIe3-UR9Xyng_sZw/export?format=png&pageid=p"
 								width={300}
 								height={200}
 								alt="Template Thumbnail"
 								className="rounded-md"
 							/>
 							<div className="text-center">
-								<h3 className="text-lg font-semibold">중고자동차 매매계약서</h3>
+								<h3 className="text-lg font-semibold">Vertical</h3>
 							</div>
 							<Button
 								size="sm"
 								onClick={() =>
 									window.open(
-										`https://docs.google.com/presentation/d/166_bhAchy6Ms29oLPtAjtzla1iOxWLwd1iX8fnJ5Ato/copy`,
+										`https://docs.google.com/presentation/d/1s-J961sUXSewWbj3HUPcCRK7sBjVIe3-UR9Xyng_sZw/copy`,
 										"_blank"
 									)
 								}
@@ -195,102 +84,6 @@ export function ResponsiveTemplateCarousel() {
 						</Card>
 					</div>
 				</CarouselItem>
-				{/* <CarouselItem>
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">채권채무상계계약서</h3>
-								<p className="text-muted-foreground">
-									Protect your confidential information with this NDA template.
-								</p>
-							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/1nSgGZfL3DZrp4Xbzj6AvnqXep5E2IOG1gRDmqWMy9nw/copy`,
-											"_blank"
-										)
-									}
-								>
-									복사본 받기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">
-									Job Description Template
-								</h3>
-								<p className="text-muted-foreground">
-									A customizable job description template for your company.
-								</p>
-							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/1usEbaOEjCaPT95ifFI1ZTIp0kvGpIc385HEU4BypzZE/copy`,
-											"_blank"
-										)
-									}
-								>
-									사용하기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-						<Card className="flex flex-col items-center gap-4 p-6">
-							<img
-								src="https://docs.google.com/presentation/d/18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8/export?format=png&pageid=p"
-								width={300}
-								height={200}
-								alt="Template Thumbnail"
-								className="rounded-md"
-							/>
-							<div className="text-center">
-								<h3 className="text-lg font-semibold">Business Contract</h3>
-								<p className="text-muted-foreground">
-									A comprehensive contract template for business agreements.
-								</p>
-							</div>
-							{status === "authenticated" ? (
-								<Button
-									size="sm"
-									onClick={() =>
-										window.open(
-											`https://docs.google.com/presentation/d/1usEbaOEjCaPT95ifFI1ZTIp0kvGpIc385HEU4BypzZE/copy`,
-											"_blank"
-										)
-									}
-								>
-									사용하기
-								</Button>
-							) : (
-								<></>
-							)}
-						</Card>
-					</div>
-				</CarouselItem> */}
 			</CarouselContent>
 			<CarouselPrevious />
 			<CarouselNext />

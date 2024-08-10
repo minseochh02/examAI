@@ -12,71 +12,17 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ResponsiveTemplateCarousel } from "./responsive-template-carousel";
 
-const SLIDE_ID = "18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8";
+const SLIDE_ID = "1RQBSmZrNamMKE-9K3sTU_dFWLdJ-S34RKnKl6S_9ew4";
 
 export function LandingPage() {
-	const { data: session, status } = useSession();
-	const [isSaving, setIsSaving] = useState(false);
-	const [saveError, setSaveError] = useState<string | null>(null);
-	const [savedSuccessfully, setSavedSuccessfully] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
-	useEffect(() => {
-		if (session?.user && !savedSuccessfully && !isSaving) {
-			saveUserData();
-		}
-	}, [session, savedSuccessfully, isSaving]);
-
-	const saveUserData = async () => {
-		if (!session?.user) return;
-
-		setIsSaving(true);
-		setSaveError(null);
-
-		try {
-			const response = await fetch("/api/save-user-data", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-
-			if (!response.ok) {
-				throw new Error("Failed to save user data");
-			}
-
-			setSavedSuccessfully(true);
-		} catch (error) {
-			console.error("Error saving user data:", error);
-			setSaveError("Failed to save user data. Please try again.");
-		} finally {
-			setIsSaving(false);
-		}
-	};
-
-	const handleSignOut = async () => {
-		signOut();
-	};
-	const handleSignIn = async () => {
-		signIn();
-	};
-
 	const handleButtonClick = async () => {
-		setIsLoading(true);
-		try {
-			if (status === "authenticated") {
-				// router.push("/tutorial");
-			} else {
-				await signIn("google");
-			}
-		} finally {
-			setIsLoading(false);
-			window.open(
-				`https://docs.google.com/presentation/d/${SLIDE_ID}/copy`,
-				"_blank"
-			);
-		}
+		window.open(
+			`https://docs.google.com/presentation/d/${SLIDE_ID}/copy`,
+			"_blank"
+		);
 	};
 
 	return (
@@ -87,8 +33,8 @@ export function LandingPage() {
 					className="flex items-center justify-center"
 					prefetch={false}
 				>
-					<CompanynIcon />
-					<span className="sr-only">Acme Inc</span>
+					<CompanyIcon />
+					<span className="sr-only">examAI</span>
 				</Link>
 				<nav className="ml-auto flex gap-4 sm:gap-6">
 					<Link
@@ -99,55 +45,28 @@ export function LandingPage() {
 						Home
 					</Link>
 					<Link
-						href="/features"
-						className="text-sm font-medium hover:underline underline-offset-4"
-						prefetch={false}
-					>
-						Features
-					</Link>
-					<Link
 						href="/tutorial"
 						className="text-sm font-medium hover:underline underline-offset-4"
 						prefetch={false}
 					>
 						Tutorial
 					</Link>
-					{status === "authenticated" ? (
-						<>
-							<Link
-								href="/community"
-								className="text-sm font-medium hover:underline underline-offset-4"
-								prefetch={false}
-							>
-								Community
-							</Link>
-							<Button onClick={handleSignOut}>Log Out</Button>
-						</>
-					) : (
-						<Button onClick={handleSignIn}>Log In</Button>
-					)}
 				</nav>
 			</header>
 			<main className="flex-1">
 				<section className="w-full pt-12 md:pt-24 lg:pt-32 xl:pt-48">
 					<div className="container px-4 md:px-6">
 						<div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-							<img
-								src="/temp.png"
-								width="550"
-								height="750"
-								alt="Hero"
-								className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
-							/>
-							<div className="flex flex-col justify-center space-y-4">
-								<div className="space-y-2">
+							<div className="flex flex-col justify-center">
+								<div className="">
 									<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-										클릭 한 번으로 완성되는 서명의 여정
+										AI-Powered Education for All
 									</h1>
-									<p className="max-w-[600px] text-muted-foreground md:text-xl">
-										서명의 완벽한 삼박자: 손쉽게 문서를 만들고, 빠르게 서명을
-										받고, 안전하게 기록을 보관하세요. 로그인 없이 누구나 참여할
-										수 있는 혁신적인 서명 솔루션을 경험해보세요.
+									<p className=" text-muted-foreground md:text-xl">
+										ExamAI + Google Slides: Transform your assessment process,
+										reclaim valuable time, and elevate learning outcomes. No
+										login required - empower every educator and student
+										instantly.
 									</p>
 								</div>
 								<button
@@ -155,13 +74,7 @@ export function LandingPage() {
 									disabled={isLoading}
 									className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 								>
-									{isLoading ? (
-										<Spinner />
-									) : status === "authenticated" ? (
-										"서명기 사용하기"
-									) : (
-										"무료로 시작하기"
-									)}
+									{isLoading ? <Spinner /> : "Unlock ExamAI in Your Drive"}
 								</button>
 							</div>
 						</div>
@@ -171,6 +84,9 @@ export function LandingPage() {
 					<div className="container px-4 md:px-6">
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<div className="space-y-2">
+								<h2 className="text-2xl font-semibold mb-4">
+									See ExamAI in Action
+								</h2>
 								<ResponsiveTemplateCarousel />
 							</div>
 						</div>
@@ -182,57 +98,55 @@ export function LandingPage() {
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<div className="space-y-2">
 								<div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
-									새로운 기능
+									Game-Changing Features
 								</div>
 								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-									믿을 수 없이 쉬운 서명. 끝없는 혁신.
+									AI-Powered Efficiency, Effortless Setup
 								</h2>
 								<p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-									서명의 복잡함을 완전히 없앤 플랫폼입니다. 로그인 절차도,
-									복잡한 단계도 없습니다. 직관적인 문서 생성부터 원클릭 서명,
-									자동 저장까지 - 모든 과정이 놀랍도록 간단합니다. 이제 소규모
-									기업 CEO나 재무 관리자와 같은 바쁜 전문가들이 번거로운 절차
-									대신 핵심 업무에 집중할 수 있습니다.
+									Break free from the grading grind. Redirect your energy
+									towards crafting transformative learning experiences. Our
+									AI-driven system doesn't just streamline assessment—it
+									redefines it, empowering you to innovate, inspire, and impact
+									lives.
 								</p>
 							</div>
 						</div>
 						<div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-							<img
-								src="/temp-A.png"
-								width="550"
-								height="310"
-								alt="Image"
-								className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-							/>
 							<div className="flex flex-col justify-center space-y-4">
 								<ul className="grid gap-6">
 									<li>
 										<div className="grid gap-1">
-											<h3 className="text-xl font-bold">원클릭 서명</h3>
+											<h3 className="text-xl font-bold">
+												Instant Setup, Immediate Impact
+											</h3>
 											<p className="text-muted-foreground">
-												로그인 없이 한 번의 클릭으로 어디서나 즉시 서명할 수
-												있습니다.
+												No logins, no barriers. Students engage with exams and
+												receive instant feedback, accelerating the learning
+												process.
 											</p>
 										</div>
 									</li>
 									<li>
 										<div className="grid gap-1">
 											<h3 className="text-xl font-bold">
-												무제한 사용 무제한 무료
+												Unlimited Potential, Boundless Learning
 											</h3>
 											<p className="text-muted-foreground">
-												횟수 제한 없이 무료로 사용하세요. 비용 걱정 없이 필요한
-												만큼 서명하고, 문서를 주고받을 수 있습니다. 실수해도
-												괜찮아요 - 언제든 다시 시도할 수 있으니까요.
+												Your curriculum, amplified. Let your teaching vision
+												soar without technical constraints.
 											</p>
 										</div>
 									</li>
 									<li>
 										<div className="grid gap-1">
-											<h3 className="text-xl font-bold">직관적인 인터페이스</h3>
+											<h3 className="text-xl font-bold">
+												Familiarity Meets Innovation
+											</h3>
 											<p className="text-muted-foreground">
-												보이는 그대로 간편하게 전송하고 받아보세요. 복잡한
-												설명이 필요 없는 사용자 중심 디자인.
+												Harness the power of Google Slides to create, ExamAI to
+												evaluate. Publish tests as interactive web
+												experiences—no learning curve, all impact.
 											</p>
 										</div>
 									</li>
@@ -245,11 +159,11 @@ export function LandingPage() {
 					<div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
 						<div className="space-y-2">
 							<h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-								한 번의 클릭으로 비즈니스의 속도를 높이세요.
+								A single click, tens and thousands of papers graded.
 							</h2>
 							<p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-								복잡한 서류 작업 대신 핵심 비즈니스에 집중하세요. 원클릭 서명과
-								자동화된 문서 관리로 업무 효율을 극대화합니다.
+								Set up once, benefit forever. Build a custom assessment database
+								that evolves with your teaching, year after year.
 							</p>
 						</div>
 						<div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
@@ -258,57 +172,18 @@ export function LandingPage() {
 								className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 								prefetch={false}
 							>
-								도음 받기
+								Get Help
 							</Link>
 							<Link
 								href="/tutorial"
 								className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 								prefetch={false}
 							>
-								사용 방법
+								See Tutorial
 							</Link>
 						</div>
 					</div>
 				</section>
-				{/* <section className="w-full py-12 md:py-24 lg:py-32 border-t">
-					<div className="container px-4 md:px-6">
-						<div className="grid gap-10 sm:px-10 md:gap-16 md:grid-cols-2">
-							<div className="space-y-4">
-								<div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
-									Performance
-								</div>
-								<h2 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-									Traffic spikes should be exciting, not scary.
-								</h2>
-								<Link
-									href="#"
-									className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-									prefetch={false}
-								>
-									Get Started
-								</Link>
-							</div>
-							<div className="flex flex-col items-start space-y-4">
-								<div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
-									Security
-								</div>
-								<p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-									Fully managed infrastructure designed to scale dynamically
-									with your traffic, a global edge to ensure your site is fast
-									for every customer, and the tools to monitor every aspect of
-									your app.
-								</p>
-								<Link
-									href="#"
-									className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-									prefetch={false}
-								>
-									Get Help
-								</Link>
-							</div>
-						</div>
-					</div>
-				</section> */}
 			</main>
 			<footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
 				<p className="text-xs text-muted-foreground">&copy; 2024 QUUS LLC.</p>
@@ -333,8 +208,8 @@ export function LandingPage() {
 	);
 }
 
-function CompanynIcon() {
-	return <img src="/logo.png" alt="icon" className="h-14 w-24" />;
+function CompanyIcon() {
+	return <img src="/icon.png" alt="icon" className="h-14 w-24" />;
 }
 
 function XIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {

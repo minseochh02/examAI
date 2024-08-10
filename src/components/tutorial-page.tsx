@@ -29,77 +29,24 @@ import {
 	CollapsibleTrigger,
 	CollapsibleContent,
 } from "@/components/ui/collapsible";
-import { JSX, SVGProps } from "react";
-import React, { useState, useEffect } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
+import React from "react";
 import { Button } from "@/components/ui/button";
 
-const SLIDE_ID = "18kr48JvRcEyeBo9IOlvadRfPIH27debHy1-xUM6M6x8";
+const SLIDE_ID = "1RQBSmZrNamMKE-9K3sTU_dFWLdJ-S34RKnKl6S_9ew4";
 
 export function TutorialPage() {
-	const { data: session, status } = useSession();
-	const [isSaving, setIsSaving] = useState(false);
-	const [saveError, setSaveError] = useState<string | null>(null);
-	const [savedSuccessfully, setSavedSuccessfully] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
-	const router = useRouter();
-
-	useEffect(() => {
-		if (session?.user && !savedSuccessfully && !isSaving) {
-			saveUserData();
-		}
-	}, [session, savedSuccessfully, isSaving]);
-
-	const saveUserData = async () => {
-		if (!session?.user) return;
-
-		setIsSaving(true);
-		setSaveError(null);
-
-		try {
-			const response = await fetch("/api/save-user-data", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-
-			if (!response.ok) {
-				throw new Error("Failed to save user data");
-			}
-
-			setSavedSuccessfully(true);
-		} catch (error) {
-			console.error("Error saving user data:", error);
-			setSaveError("Failed to save user data. Please try again.");
-		} finally {
-			setIsSaving(false);
-		}
-	};
-
 	const handleButtonClick = async () => {
-		setIsLoading(true);
-		try {
-			if (status === "authenticated") {
-				// router.push("/tutorial");
-			} else {
-				await signIn("google");
-			}
-		} finally {
-			setIsLoading(false);
-			window.open(
-				`https://docs.google.com/presentation/d/${SLIDE_ID}/copy`,
-				"_blank"
-			);
-		}
+		window.open(
+			`https://docs.google.com/presentation/d/${SLIDE_ID}/copy`,
+			"_blank"
+		);
 	};
 
-	const handleSignOut = async () => {
-		signOut();
-	};
-	const handleSignIn = async () => {
-		signIn();
+	const moveToTest = async () => {
+		window.open(
+			"https://script.google.com/macros/s/AKfycbxVP1Fz6mMHOSR2glUxWi9dQKnLooCbhU2k204lEer_V09zrRGJqHye526T0ba583OkOw/exec?target=minseochh02@gmail.com&id=10"
+		);
 	};
 
 	return (
@@ -111,7 +58,7 @@ export function TutorialPage() {
 					prefetch={false}
 				>
 					<CompanyIcon />
-					<span className="sr-only">Acme Inc</span>
+					<span className="sr-only">ExamAI</span>
 				</Link>
 				<nav className="ml-auto flex gap-4 sm:gap-6">
 					<Link
@@ -122,33 +69,12 @@ export function TutorialPage() {
 						Home
 					</Link>
 					<Link
-						href="/features"
-						className="text-sm font-medium hover:underline underline-offset-4"
-						prefetch={false}
-					>
-						Features
-					</Link>
-					<Link
 						href="#"
 						className="text-sm font-medium underline underline-offset-4"
 						prefetch={false}
 					>
 						Tutorial
 					</Link>
-					{status === "authenticated" ? (
-						<>
-							<Link
-								href="/community"
-								className="text-sm font-medium hover:underline underline-offset-4"
-								prefetch={false}
-							>
-								Community
-							</Link>
-							<Button onClick={handleSignOut}>Log Out</Button>
-						</>
-					) : (
-						<Button onClick={handleSignIn}>Log In</Button>
-					)}
 				</nav>
 			</header>
 			<section className="w-full py-12 md:py-24 lg:py-32">
@@ -157,28 +83,22 @@ export function TutorialPage() {
 						<div className="flex flex-col justify-center space-y-4">
 							<div className="space-y-2">
 								<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-									서명기 사용법
+									ExamAI Tutorial:
 								</h1>
 								<p className="max-w-[600px] text-muted-foreground md:text-xl">
-									밑 버튼을 눌러 서명기 받기를 사작하고 사용법을 따라 서명
-									문서를 생성하세요.
+									Follow this guide to quickly set up, distribute, and grade
+									your exams using ExamAI.
 								</p>
 							</div>
 							<button
 								onClick={handleButtonClick}
 								className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 							>
-								{isLoading ? (
-									<Spinner />
-								) : status === "authenticated" ? (
-									"서명기 사용하기"
-								) : (
-									"가입하기"
-								)}
+								Unlock ExamAI in Your Drive
 							</button>
 						</div>
 						<img
-							src="/placeholder.svg"
+							src="/examAI-Full.png"
 							width="550"
 							height="550"
 							alt="Hero"
@@ -192,11 +112,10 @@ export function TutorialPage() {
 					<div className="space-y-8">
 						<div className="space-y-2">
 							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-								서명기 사용법
+								ExamAI Tutorial
 							</h2>
 							<p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-								이 간단한 step들을 따라 서명기를 시작하고 그 잠재력을 최대한
-								활용하세요.
+								It can't get easier
 							</p>
 						</div>
 						<div className="grid gap-6">
@@ -206,17 +125,19 @@ export function TutorialPage() {
 										<div className="rounded-full bg-primary px-2 py-1 text-xs font-medium text-primary-foreground">
 											1
 										</div>
-										<h3 className="text-lg font-semibold">계정 연결</h3>
+										<h3 className="text-lg font-semibold">Initiate</h3>
 									</div>
 									<div className="h-5 w-5 transition-transform data-[state=open]:rotate-90" />
 								</CollapsibleTrigger>
 								<CollapsibleContent className="mt-4 text-muted-foreground">
+									<p>Wait for [Exam Tool] to appear at the top.</p>
 									<p>
-										이 웹사이트에 구굴 계정으로 가입하여 서명기가 당신 계정에
-										서명을 받을 수 있게 권한을 허락해주세요.
+										allows ExamAI to access your Drive, Slides, and
+										Spreadsheets. This enables ExamAI to create a personalized
+										URL for your exam.
 									</p>
 									<img
-										src="/placeholder.svg"
+										src="/examAI-permission.png"
 										width="550"
 										height="550"
 										alt="Hero"
@@ -230,18 +151,19 @@ export function TutorialPage() {
 										<div className="rounded-full bg-primary px-2 py-1 text-xs font-medium text-primary-foreground">
 											2
 										</div>
-										<h3 className="text-lg font-semibold">문서 복사하기</h3>
+										<h3 className="text-lg font-semibold">Set Up</h3>
 									</div>
 									<div className="h-5 w-5 transition-transform data-[state=open]:rotate-90" />
 								</CollapsibleTrigger>
 								<CollapsibleContent className="mt-4 text-muted-foreground">
+									<p>Creates a dedicated folder for your exam materials.</p>
 									<p>
-										가입 후 바로 서명기가 들어있는 구굴 프레젠테이션 복사 링크가
-										열립니다. 앱스크립트와 같이 복사해주세요.
+										Inside it gives you a new spreadsheet to track your exam
+										questions and settings. Begin inputting your exam questions
+										into the slide.
 									</p>
 									<img
-										src="/placeholder.svg"
-										width="550"
+										src="/examAI-setup.png"
 										height="550"
 										alt="Hero"
 										className="mx-auto aspect-video overflow-hidden rounded-xl object-bottom sm:w-full lg:order-last lg:aspect-square"
@@ -254,19 +176,17 @@ export function TutorialPage() {
 										<div className="rounded-full bg-primary px-2 py-1 text-xs font-medium text-primary-foreground">
 											3
 										</div>
-										<h3 className="text-lg font-semibold">
-											서명기에게 문서 접근 허락
-										</h3>
+										<h3 className="text-lg font-semibold">Set Answers</h3>
 									</div>
 									<div className="h-5 w-5 transition-transform data-[state=open]:rotate-90" />
 								</CollapsibleTrigger>
 								<CollapsibleContent className="mt-4 text-muted-foreground">
 									<p>
-										1분 기다리면 위에 서명 받기가 나옵니다. 이것을 눌러 서명
-										영역 생성을 누루시면 허락하라는 페이지가 뜹니다.
+										Automatically creates an answer sheet and OMR based on your
+										current slide.
 									</p>
 									<img
-										src="/placeholder.svg"
+										src="/examAI-setAnswers.png"
 										width="550"
 										height="550"
 										alt="Hero"
@@ -280,41 +200,22 @@ export function TutorialPage() {
 										<div className="rounded-full bg-primary px-2 py-1 text-xs font-medium text-primary-foreground">
 											4
 										</div>
-										<h3 className="text-lg font-semibold">고급 설정</h3>
+										<h3 className="text-lg font-semibold">Publish and Share</h3>
 									</div>
 									<div className="h-5 w-5 transition-transform data-[state=open]:rotate-90" />
 								</CollapsibleTrigger>
 								<CollapsibleContent className="mt-4 text-muted-foreground">
 									<p>
-										서명기에게 허락을 줄라면 고급 설정을 눌러서 밑에 나오는
-										계속하기를 누르셔야 사용할 수 있습니다.
+										Select the exam pages you want to make available. Publish
+										them to get a shareable URL.
 									</p>
-									<img
-										src="/placeholder.svg"
-										width="550"
-										height="550"
-										alt="Hero"
-										className="mx-auto aspect-video overflow-hidden rounded-xl object-bottom sm:w-full lg:order-last lg:aspect-square"
-									/>
-								</CollapsibleContent>
-							</Collapsible>
-							<Collapsible className="rounded-lg border bg-background p-4 shadow-sm">
-								<CollapsibleTrigger className="flex items-center justify-between">
-									<div className="flex items-center gap-3">
-										<div className="rounded-full bg-primary px-2 py-1 text-xs font-medium text-primary-foreground">
-											5
-										</div>
-										<h3 className="text-lg font-semibold">서명 받기</h3>
-									</div>
-									<div className="h-5 w-5 transition-transform data-[state=open]:rotate-90" />
-								</CollapsibleTrigger>
-								<CollapsibleContent className="mt-4 text-muted-foreground">
 									<p>
-										서명 영역 만들기로 서명 받을 영역을 만들고 서명 링크 받기로
-										서명할 분에게 링크를 보내세요.
+										Distribute this URL to your students, and ExamAI will handle
+										the rest, including grading!
 									</p>
+									<Button onClick={moveToTest}>Like This!</Button>
 									<img
-										src="/placeholder.svg"
+										src="/examAI-Final.png"
 										width="550"
 										height="550"
 										alt="Hero"
@@ -330,7 +231,7 @@ export function TutorialPage() {
 	);
 }
 function CompanyIcon() {
-	return <img src="/logo.png" alt="icon" className="h-14 w-24" />;
+	return <img src="/icon.png" alt="icon" className="h-14 w-24" />;
 }
 function Spinner() {
 	return (
