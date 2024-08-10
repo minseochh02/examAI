@@ -115,7 +115,7 @@ export function TutorialPage() {
 								ExamAI Tutorial
 							</h2>
 							<p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-								It can't get easier
+								It can&apost get easier
 							</p>
 						</div>
 						<div className="grid gap-6">

@@ -106,7 +106,7 @@ export function LandingPage() {
 								<p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
 									Break free from the grading grind. Redirect your energy
 									towards crafting transformative learning experiences. Our
-									AI-driven system doesn't just streamline assessment—it
+									AI-driven system doesn&apost just streamline assessment—it
 									redefines it, empowering you to innovate, inspire, and impact
 									lives.
 								</p>
